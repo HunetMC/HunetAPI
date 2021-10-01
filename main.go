@@ -24,7 +24,7 @@ func main() {
 	if (portArg >= 1 && portArg <= 65535) {
 		port := ":" + strconv.Itoa(portArg)
 		
-		// // Route: /
+		// Route: /
 		http.HandleFunc("/", root_handler)
 		log.Fatal(http.ListenAndServe(port, nil))
 	
