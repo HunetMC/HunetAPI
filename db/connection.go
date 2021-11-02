@@ -2,8 +2,8 @@ package db
 
 import (
 	"database/sql"
-    "fmt"
-    _ "github.com/go-sql-driver/mysql"
+	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func Connect() {
