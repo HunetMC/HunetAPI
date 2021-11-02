@@ -29,3 +29,8 @@ func read_conf() (*Conf, error) {
 	
 	return conf, err
 }
+
+func get_mysql_uri() string {
+	conf, _ := read_conf()
+	return conf.MySQL
+}
