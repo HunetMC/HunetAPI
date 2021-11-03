@@ -1,5 +1,5 @@
 # HunetAPI
-RESTful API server for providing player's data to website
+API server for providing player's data to website
 
 ## Serving web server
 `$ go run . <port>`
