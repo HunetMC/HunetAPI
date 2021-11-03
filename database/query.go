@@ -13,7 +13,7 @@ func (TrashScanner) Scan(interface{}) error {
 	return nil
 }
 
-// "/players": list entire players
+// "/players": List entire players
 func Get_players() string {
 	rows, err := DB.Query("SELECT * FROM players;")
 	if err != nil {
@@ -49,5 +49,48 @@ func Get_players() string {
 	
 	// Convert array "players" into JSON string
 	j, err := json.Marshal(players)
+	return string(j)
+}
+
+// "/player/:uuid": Retrieve informations about specific player
+type Player struct {
+	UUID string
+	Name string
+	Last int32
+	First int32
+	Kill int32
+	Death int32
+}
+func Get_player(uuid string) string {
+	rows, err := DB.Query("SELECT * FROM `players` WHERE `uuid` = ?;", uuid)
+	if err != nil {
+		log.Println(err)
+	}
+	defer rows.Close()
+	
+	player := Player{}
+
+	for rows.Next() {
+		// Retrieving columns
+		// Discard unused columns using TrashScanner.
+		err := rows.Scan(
+			&player.UUID,
+			&player.Name,
+			&player.Last,
+			&player.First,
+			&player.Kill,
+			&player.Death,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+	
+	// Convert array "player" into JSON string
+	j, err := json.Marshal(player)
 	return string(j)
 }

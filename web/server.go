@@ -8,6 +8,7 @@ import (
 func Server() {
 	// Routes
 	http.HandleFunc("/", root_handler)
+	http.HandleFunc("/player/", player_handler)
 	http.HandleFunc("/players", players_handler)
 	
 	err := http.ListenAndServe(get_port(), nil)
