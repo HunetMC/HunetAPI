@@ -10,6 +10,7 @@ func Server() {
 	http.HandleFunc("/", RootHandler)
 	http.HandleFunc("/player/", PlayerHandler)
 	http.HandleFunc("/players", PlayersHandler)
+	http.HandleFunc("/duel/", DuelHandler)
 	
 	err := http.ListenAndServe(GetPort(), nil)
 	if err != nil {
