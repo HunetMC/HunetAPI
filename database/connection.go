@@ -31,3 +31,7 @@ func Open() {
 func Close() error {
 	return DB.Close()
 }
+
+func GetDB() *sql.DB {
+	return DB
+}

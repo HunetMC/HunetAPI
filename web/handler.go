@@ -2,7 +2,7 @@ package web
 
 import (
 	// own packages
-	"github.com/HunetMC/HunetAPI/database"
+	"github.com/HunetMC/HunetAPI/query"
 	"github.com/HunetMC/HunetAPI/util"
 
 	// go get packages
@@ -18,7 +18,7 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func PlayersHandler(w http.ResponseWriter, r *http.Request) {
-	resp := database.GetPlayers()
+	resp := query.GetPlayers()
 	fmt.Fprint(w, resp)
 }
 
@@ -27,7 +27,7 @@ func PlayerHandler(w http.ResponseWriter, r *http.Request) {
     _, uuid := filepath.Split(sub)
     if uuid != "" {
         if util.IsValidUUID(uuid) {
-            resp := database.GetPlayer(uuid)
+            resp := query.GetPlayer(uuid)
 			fmt.Fprint(w, resp)
         } else {
 			resp := "Specified UUID is invalid."
