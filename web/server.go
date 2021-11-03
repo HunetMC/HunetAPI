@@ -1,14 +1,20 @@
 package web
 
 import (
-	"log"
+	"fmt"
 	"net/http"
 )
 
 func Server() {
-	get_port()
-	
-	// Route: /
+	// Routes
 	http.HandleFunc("/", root_handler)
-	log.Fatal(http.ListenAndServe(":20000", nil))
+	http.HandleFunc("/players", players_handler)
+	
+	err := http.ListenAndServe(get_port(), nil)
+	if err != nil {
+		fmt.Println("Failed to start web server.")
+		return
+	} else {
+		fmt.Println("Successfully started web server.")
+	}
 }
