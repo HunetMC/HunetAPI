@@ -7,11 +7,11 @@ import (
 
 func Server() {
 	// Routes
-	http.HandleFunc("/", root_handler)
-	http.HandleFunc("/player/", player_handler)
-	http.HandleFunc("/players", players_handler)
+	http.HandleFunc("/", RootHandler)
+	http.HandleFunc("/player/", PlayerHandler)
+	http.HandleFunc("/players", PlayersHandler)
 	
-	err := http.ListenAndServe(get_port(), nil)
+	err := http.ListenAndServe(GetPort(), nil)
 	if err != nil {
 		fmt.Println("Failed to start web server.")
 		return

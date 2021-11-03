@@ -5,13 +5,13 @@ import (
     "io/ioutil"
 )
 
-// Constructor for config.json
+// Conf Constructor for config.json
 type Conf struct {
 	MySQL string `json:"mysql"`
 }
 
 // Reading configuration
-func read_conf() (*Conf, error) {
+func readConf() (*Conf, error) {
 	const file = "config.json"
 	conf := new(Conf) // Initialize constructor
 	
@@ -30,7 +30,7 @@ func read_conf() (*Conf, error) {
 	return conf, err
 }
 
-func get_mysql_uri() string {
-	conf, _ := read_conf()
+func GetSQLURI() string {
+	conf, _ := readConf()
 	return conf.MySQL
 }

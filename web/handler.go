@@ -4,30 +4,30 @@ import (
 	// own packages
 	"github.com/HunetMC/HunetAPI/database"
 	"github.com/HunetMC/HunetAPI/util"
-	
+
 	// go get packages
 	"fmt"
-	"strings"
-	"path/filepath"
 	"net/http"
+	"path/filepath"
+	"strings"
 )
 
-func root_handler(w http.ResponseWriter, r *http.Request) {
+func RootHandler(w http.ResponseWriter, r *http.Request) {
 	resp := "200 OK"
 	fmt.Fprint(w, resp)
 }
 
-func players_handler(w http.ResponseWriter, r *http.Request) {
-	resp := database.Get_players()
+func PlayersHandler(w http.ResponseWriter, r *http.Request) {
+	resp := database.GetPlayers()
 	fmt.Fprint(w, resp)
 }
 
-func player_handler(w http.ResponseWriter, r *http.Request) {
+func PlayerHandler(w http.ResponseWriter, r *http.Request) {
 	sub := strings.TrimPrefix(r.URL.Path, "/player")
     _, uuid := filepath.Split(sub)
     if uuid != "" {
-        if (util.IsValidUUID(uuid)) {
-            resp := database.Get_player(uuid)
+        if util.IsValidUUID(uuid) {
+            resp := database.GetPlayer(uuid)
 			fmt.Fprint(w, resp)
         } else {
 			resp := "Specified UUID is invalid."

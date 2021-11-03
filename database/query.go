@@ -1,20 +1,20 @@
 package database
 
 import (
-	// go get packages
-	"log"
 	"encoding/json"
 	_ "github.com/go-sql-driver/mysql"
+	// go get packages
+	"log"
 )
 
-// Query handlers
+// TrashScanner: Discard unused columns in table
 type TrashScanner struct{}
 func (TrashScanner) Scan(interface{}) error {
 	return nil
 }
 
-// "/players": List entire players
-func Get_players() string {
+// GetPlayers "/players": List entire players
+func GetPlayers() string {
 	rows, err := DB.Query("SELECT * FROM players;")
 	if err != nil {
 		log.Println(err)
@@ -52,7 +52,7 @@ func Get_players() string {
 	return string(j)
 }
 
-// "/player/:uuid": Retrieve informations about specific player
+
 type Player struct {
 	UUID string
 	Name string
@@ -61,7 +61,9 @@ type Player struct {
 	Kill int32
 	Death int32
 }
-func Get_player(uuid string) string {
+
+// GetPlayer "/player/:uuid": Retrieve information about specific player
+func GetPlayer(uuid string) string {
 	rows, err := DB.Query("SELECT * FROM `players` WHERE `uuid` = ?;", uuid)
 	if err != nil {
 		log.Println(err)
@@ -92,7 +94,7 @@ func Get_player(uuid string) string {
 	
 	// Convert array "player" into JSON string
 	var res string
-	if (len(player.UUID) == 0){
+	if len(player.UUID) == 0 {
 		res = "404"
 	} else {
 		j, _ := json.Marshal(player)

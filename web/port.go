@@ -1,12 +1,12 @@
 package web
 
 import (
-	"os"
 	"fmt"
+	"os"
 	"strconv"
 )
 
-func get_port() string {
+func GetPort() string {
 	var port string
 	
 	// Retriving port for serving web server
