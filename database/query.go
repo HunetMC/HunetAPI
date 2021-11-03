@@ -91,6 +91,13 @@ func Get_player(uuid string) string {
 	}
 	
 	// Convert array "player" into JSON string
-	j, err := json.Marshal(player)
-	return string(j)
+	var res string
+	if (len(player.UUID) == 0){
+		res = "404"
+	} else {
+		j, _ := json.Marshal(player)
+		res = string(j)
+	}
+	
+	return res
 }
