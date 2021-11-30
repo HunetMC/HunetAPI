@@ -17,6 +17,7 @@ type Player struct {
 	First int32
 	Kill int32
 	Death int32
+	Permission string
 }
 
 // GetPlayer "/player/:uuid": Retrieve information about specific player
@@ -40,6 +41,7 @@ func GetPlayer(uuid string) string {
 			&player.First,
 			&player.Kill,
 			&player.Death,
+			&player.Permission,
 		)
 		if err != nil {
 			log.Fatal(err)
