@@ -38,6 +38,12 @@ func GetPlayers() string {
 			TrashScanner{},
 			TrashScanner{},
 			TrashScanner{},
+			TrashScanner{},
+			TrashScanner{},
+			TrashScanner{},
+			TrashScanner{},
+			TrashScanner{},
+			TrashScanner{},
 		)
 		if err != nil {
 			log.Fatal(err)
