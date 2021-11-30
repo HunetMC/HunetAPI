@@ -13,6 +13,9 @@ import (
 type Player struct {
 	UUID string
 	Name string
+	Country string
+	CurrentKit string
+	KitList string
 	Last int32
 	First int32
 	Kill int32
@@ -37,6 +40,9 @@ func GetPlayer(uuid string) string {
 		err := rows.Scan(
 			&player.UUID,
 			&player.Name,
+			&player.Country,
+			&player.CurrentKit,
+			&player.KitList,
 			&player.Last,
 			&player.First,
 			&player.Kill,

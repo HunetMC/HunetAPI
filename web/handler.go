@@ -14,16 +14,28 @@ import (
 )
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set( "Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS" )
+	
 	resp := "200 OK"
 	fmt.Fprint(w, resp)
 }
 
 func PlayersHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set( "Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS" )
+	
 	resp := query.GetPlayers()
 	fmt.Fprint(w, resp)
 }
 
 func PlayerHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set( "Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS" )
+	
 	sub := strings.TrimPrefix(r.URL.Path, "/player")
     _, uuid := filepath.Split(sub)
     if uuid != "" {
@@ -41,6 +53,10 @@ func PlayerHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DuelHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set( "Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS" )
+	
 	sub := strings.TrimPrefix(r.URL.Path, "/duel")
     _, id := filepath.Split(sub)
     if id != "" {
